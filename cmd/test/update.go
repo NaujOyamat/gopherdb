@@ -3,7 +3,7 @@ package main
 import (
 	"log"
 
-	"github.com/wirvii/gopherdb"
+	"github.com/NaujOyamat/gopherdb"
 )
 
 func runUpdate(coll *gopherdb.Collection) {

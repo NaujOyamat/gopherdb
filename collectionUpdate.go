@@ -3,7 +3,7 @@ package gopherdb
 import (
 	"fmt"
 
-	"github.com/wirvii/gopherdb/options"
+	"github.com/NaujOyamat/gopherdb/options"
 )
 
 // UpdateOne updates a single document by a filter.

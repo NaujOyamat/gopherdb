@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"reflect"
 
-	"github.com/wirvii/gopherdb/internal/bson"
-	"github.com/wirvii/gopherdb/internal/storage"
+	"github.com/NaujOyamat/gopherdb/internal/bson"
+	"github.com/NaujOyamat/gopherdb/internal/storage"
 )
 
 // InsertOneResult es el resultado de una inserción.

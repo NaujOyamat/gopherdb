@@ -1,4 +1,4 @@
-module github.com/wirvii/gopherdb
+module github.com/NaujOyamat/gopherdb
 
 go 1.24.1
 

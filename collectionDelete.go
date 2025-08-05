@@ -3,7 +3,7 @@ package gopherdb
 import (
 	"fmt"
 
-	"github.com/wirvii/gopherdb/internal/consts"
+	"github.com/NaujOyamat/gopherdb/internal/consts"
 )
 
 // DeleteOne deletes a single document by a filter.

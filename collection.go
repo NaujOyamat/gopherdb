@@ -10,10 +10,10 @@ import (
 	"time"
 
 	"github.com/google/uuid"
-	"github.com/wirvii/gopherdb/internal/bson"
-	"github.com/wirvii/gopherdb/internal/consts"
-	"github.com/wirvii/gopherdb/internal/storage"
-	"github.com/wirvii/gopherdb/options"
+	"github.com/NaujOyamat/gopherdb/internal/bson"
+	"github.com/NaujOyamat/gopherdb/internal/consts"
+	"github.com/NaujOyamat/gopherdb/internal/storage"
+	"github.com/NaujOyamat/gopherdb/options"
 )
 
 // Collection is a collection of documents.

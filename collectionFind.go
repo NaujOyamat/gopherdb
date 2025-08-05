@@ -3,9 +3,9 @@ package gopherdb
 import (
 	"fmt"
 
-	"github.com/wirvii/gopherdb/internal/queryengine"
-	"github.com/wirvii/gopherdb/internal/storage"
-	"github.com/wirvii/gopherdb/options"
+	"github.com/NaujOyamat/gopherdb/internal/queryengine"
+	"github.com/NaujOyamat/gopherdb/internal/storage"
+	"github.com/NaujOyamat/gopherdb/options"
 )
 
 // FindByID finds a document by its ID.

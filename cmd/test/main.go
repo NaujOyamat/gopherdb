@@ -4,7 +4,7 @@ import (
 	"context"
 	"log"
 
-	"github.com/wirvii/gopherdb"
+	"github.com/NaujOyamat/gopherdb"
 )
 
 func main() {

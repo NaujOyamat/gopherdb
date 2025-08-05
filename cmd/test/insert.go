@@ -6,7 +6,7 @@ import (
 	"log"
 	"time"
 
-	"github.com/wirvii/gopherdb"
+	"github.com/NaujOyamat/gopherdb"
 )
 
 // runInsert runs the insert benchmark.

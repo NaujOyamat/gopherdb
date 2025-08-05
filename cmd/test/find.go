@@ -4,7 +4,7 @@ import (
 	"log"
 	"time"
 
-	"github.com/wirvii/gopherdb"
+	"github.com/NaujOyamat/gopherdb"
 )
 
 // runFindAll runs the find all benchmark.

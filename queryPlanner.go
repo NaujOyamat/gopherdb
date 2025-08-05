@@ -1,8 +1,8 @@
 package gopherdb
 
 import (
-	"github.com/wirvii/gopherdb/internal/queryengine"
-	"github.com/wirvii/gopherdb/options"
+	"github.com/NaujOyamat/gopherdb/internal/queryengine"
+	"github.com/NaujOyamat/gopherdb/options"
 )
 
 // QueryPlan is the plan for a query.

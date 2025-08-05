@@ -5,7 +5,7 @@ import (
 	"log"
 	"time"
 
-	"github.com/wirvii/gopherdb"
+	"github.com/NaujOyamat/gopherdb"
 )
 
 // runCreateIndexes creates indexes on the collection.

@@ -1,6 +1,6 @@
 package gopherdb
 
-import "github.com/wirvii/gopherdb/internal/storage"
+import "github.com/NaujOyamat/gopherdb/internal/storage"
 
 // Database es una base de datos.
 type Database struct {

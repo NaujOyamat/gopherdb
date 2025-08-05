@@ -8,7 +8,7 @@ import (
 
 	"github.com/dgraph-io/badger/v4"
 	"github.com/dgraph-io/ristretto/v2/z"
-	. "github.com/wirvii/gopherdb/internal/consts"
+	. "github.com/NaujOyamat/gopherdb/internal/consts"
 )
 
 // badgerEngine is an implementation of the StorageEngine interface that uses BadgerDB as the underlying storage engine.

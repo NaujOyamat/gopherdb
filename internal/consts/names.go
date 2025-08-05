@@ -1,6 +1,6 @@
 package consts
 
-import "github.com/wirvii/gopherdb/internal/pathmatcher"
+import "github.com/NaujOyamat/gopherdb/internal/pathmatcher"
 
 var (
 	CollectionKeyPathmatcher          = pathmatcher.NewPath("dbs/{db}/colls/{collection}")
