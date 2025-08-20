@@ -244,13 +244,17 @@ func (m *Manager) buildDocumentIndexKey(index Model, doc map[string]any, isPrefi
 	for _, f := range index.Fields {
 		fields = append(fields, f.Name)
 
-		val, ok := doc[f.Name]
-		if ok {
-			values = append(values, encodeForLexOrder(val, f.Order < 0))
-		} else {
-			if isPrefix {
-				continue
-			}
+               val, ok := doc[f.Name]
+               if ok {
+                       enc, err := encodeForLexOrder(val, f.Order < 0)
+                       if err != nil {
+                               return "", err
+                       }
+                       values = append(values, enc)
+               } else {
+                       if isPrefix {
+                               continue
+                       }
 
 			return "", ErrMissingFieldForIndex
 		}

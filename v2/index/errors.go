@@ -10,7 +10,9 @@ var (
 	// ErrDuplicateIndexField is returned when a duplicate index field is found.
 	ErrDuplicateIndexField = errors.New("duplicate index field")
 	// ErrUniqueIndexViolation is returned when a unique index is violated.
-	ErrUniqueIndexViolation = errors.New("unique index violation")
-	// ErrIndexAlreadyExists is returned when an index already exists.
-	ErrIndexAlreadyExists = errors.New("index already exists")
+        ErrUniqueIndexViolation = errors.New("unique index violation")
+        // ErrIndexAlreadyExists is returned when an index already exists.
+        ErrIndexAlreadyExists = errors.New("index already exists")
+       // ErrUnsupportedIndexValue is returned when an index value has an unsupported type.
+       ErrUnsupportedIndexValue = errors.New("unsupported index value type")
 )
