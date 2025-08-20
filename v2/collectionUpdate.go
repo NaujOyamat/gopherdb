@@ -12,12 +12,11 @@ func (c *Collection) UpdateOne(
 	doc any,
 	opts ...*options.UpdateOptions,
 ) UpdateOneResult {
-	_, err := validateDocumentType(doc)
-	if err != nil {
-		return UpdateOneResult{
-			Err: err,
-		}
-	}
+        if err := validateDocumentType(doc); err != nil {
+                return UpdateOneResult{
+                        Err: err,
+                }
+        }
 
 	txn := c.storage.BeginTx()
 	result := c.updateOne(txn, filter, doc, opts...)

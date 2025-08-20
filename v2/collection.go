@@ -1,13 +1,12 @@
 package gopherdb
 
 import (
-	"cmp"
-	"fmt"
-	"maps"
-	"reflect"
-	"slices"
-	"strings"
-	"time"
+        "cmp"
+        "fmt"
+        "reflect"
+        "slices"
+        "strings"
+        "time"
 
 	idx "github.com/NaujOyamat/gopherdb/v2/index"
 	"github.com/NaujOyamat/gopherdb/v2/internal/bson"
@@ -65,21 +64,19 @@ func (c *Collection) buildDocumentKey(docID string) string {
 }
 
 // ensureDocumentID ensures that the document has an ID.
-func (c *Collection) ensureDocumentID(doc map[string]any) (map[string]any, string) {
-	copyDoc := make(map[string]any)
-	maps.Copy(copyDoc, doc)
-	val, ok := copyDoc[consts.DocumentFieldID]
+func (c *Collection) ensureDocumentID(doc map[string]any) string {
+        val, ok := doc[consts.DocumentFieldID]
 
-	if !ok {
-		copyDoc[consts.DocumentFieldID] = uuid.NewString()
-	} else {
-		tval := reflect.ValueOf(val)
-		if tval.IsZero() && tval.Kind() == reflect.String {
-			copyDoc[consts.DocumentFieldID] = uuid.NewString()
-		}
-	}
+        if !ok {
+                doc[consts.DocumentFieldID] = uuid.NewString()
+        } else {
+                tval := reflect.ValueOf(val)
+                if tval.IsZero() && tval.Kind() == reflect.String {
+                        doc[consts.DocumentFieldID] = uuid.NewString()
+                }
+        }
 
-	return copyDoc, fmt.Sprintf("%v", copyDoc[consts.DocumentFieldID])
+        return fmt.Sprintf("%v", doc[consts.DocumentFieldID])
 }
 
 // updateOne updates a single document by a filter.
@@ -178,13 +175,14 @@ func (c *Collection) updateOne(
 		}
 	}
 
-	docUpdate := make(map[string]any)
-	if opt.Set != nil && *opt.Set {
-		maps.Copy(docUpdate, docMap)
-	} else {
-		maps.Copy(docUpdate, result.Document())
-		maps.Copy(docUpdate, docMap)
-	}
+        docUpdate := docMap
+        if opt.Set == nil || !*opt.Set {
+                for k, v := range result.Document() {
+                        if _, ok := docUpdate[k]; !ok {
+                                docUpdate[k] = v
+                        }
+                }
+        }
 
 	bdoc, err := bson.Marshal(docUpdate)
 	if err != nil {
@@ -223,18 +221,18 @@ func (c *Collection) insertOne(txn storage.Transaction, doc any) InsertOneResult
 		}
 	}
 
-	// 2. Generamos ID único
-	mDoc, docID := c.ensureDocumentID(parsed)
+        // 2. Generamos ID único
+        docID := c.ensureDocumentID(parsed)
 
-	// 3. Verificamos unicidad en índices
-	if err := c.IndexManager.CheckUniqueness(mDoc); err != nil {
-		return InsertOneResult{
-			Err: err,
-		}
-	}
+        // 3. Verificamos unicidad en índices
+        if err := c.IndexManager.CheckUniqueness(parsed); err != nil {
+                return InsertOneResult{
+                        Err: err,
+                }
+        }
 
-	// 4. Serializamos a JSON
-	data, err := bson.Marshal(mDoc)
+        // 4. Serializamos a JSON
+        data, err := bson.Marshal(parsed)
 	if err != nil {
 		return InsertOneResult{
 			Err: fmt.Errorf("json marshal failed: %w", err),
@@ -258,7 +256,7 @@ func (c *Collection) insertOne(txn storage.Transaction, doc any) InsertOneResult
 	c.IndexManager.IncrementDocumentCount()
 
 	// 6. Registramos índices secundarios
-	err = c.IndexManager.IndexDocument(txn, mDoc)
+        err = c.IndexManager.IndexDocument(txn, parsed)
 	if err != nil {
 		return InsertOneResult{
 			Err: fmt.Errorf("index document failed: %w", err),

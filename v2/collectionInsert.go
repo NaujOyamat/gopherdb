@@ -6,12 +6,11 @@ import (
 
 // InsertOne inserts a single document into the collection.
 func (c *Collection) InsertOne(doc any) InsertOneResult {
-	_, err := validateDocumentType(doc)
-	if err != nil {
-		return InsertOneResult{
-			Err: err,
-		}
-	}
+        if err := validateDocumentType(doc); err != nil {
+                return InsertOneResult{
+                        Err: err,
+                }
+        }
 
 	txn := c.storage.BeginTx()
 	result := c.insertOne(txn, doc)
